@@ -4,13 +4,12 @@
 
 @layer base {
   body {
-    background-color: #0b0c10;
+    background-color: #0b1120;
     color: #f1f5f9;
+    font-family: 'Inter', sans-serif;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(131, 58, 180, 0.14) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(253, 29, 29, 0.12) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(245, 96, 64, 0.10) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, rgba(64, 93, 230, 0.12) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(11, 60, 93, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(5, 150, 105, 0.08) 0px, transparent 50%);
     background-attachment: fixed;
   }
 
@@ -19,43 +18,25 @@
   }
 }
 
-/* Instagram Signature Sunset Gradient Helpers */
-.insta-gradient-bg {
-  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #fd1d1d, #f56040, #ffdc80);
-}
-
-.insta-gradient-text {
-  background: linear-gradient(45deg, #f56040, #fd1d1d, #c13584, #833ab4, #405de6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.insta-border-gradient {
-  border: 1px solid transparent;
-  background-image: linear-gradient(#12141d, #12141d), linear-gradient(45deg, #405de6, #833ab4, #fd1d1d, #ffdc80);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-}
-
-/* Glassmorphic Panel Styles */
+/* Official Clean Glassmorphism */
 .glass-panel {
-  background: rgba(18, 20, 29, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-card {
-  background: linear-gradient(135deg, rgba(22, 25, 38, 0.8) 0%, rgba(12, 14, 22, 0.9) 100%);
-  backdrop-filter: blur(20px);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.85) 100%);
+  backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(253, 29, 29, 0.5);
+  border-color: rgba(245, 158, 11, 0.4);
   transform: translateY(-2px);
-  box-shadow: 0 16px 36px -10px rgba(131, 58, 180, 0.35), 0 0 25px -5px rgba(253, 29, 29, 0.25);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
 /* Smooth Badges & Subtle Pulsing */
@@ -74,9 +55,12 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #090d16;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #1e293b;
   border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
 }

@@ -16,21 +16,21 @@ export const SchemeCard = ({ scheme }) => {
   const isEligible = scheme.is_eligible !== undefined ? scheme.is_eligible : true;
 
   return (
-    <div className="glass-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between relative group border border-slate-800/80 hover:border-pink-500/50 w-full overflow-hidden transition-all duration-300">
+    <div className="glass-card rounded-2xl p-4 sm:p-6 flex flex-col justify-between relative group border border-slate-800/80 hover:border-amber-500/40 w-full overflow-hidden">
       
       {/* Header Info */}
       <div>
         <div className="flex items-start justify-between gap-2.5 mb-3">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <span className="text-xl sm:text-2xl p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 shrink-0 shadow-inner">
+          <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+            <span className="text-xl sm:text-2xl p-2 rounded-xl bg-slate-800/80 border border-slate-700 shrink-0">
               {scheme.category?.includes("Education") ? "🎓" : scheme.category?.includes("Agriculture") ? "🌾" : scheme.category?.includes("Business") ? "💼" : scheme.category?.includes("Women") ? "👧" : "🏛️"}
             </span>
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 text-[11px] text-slate-400 font-medium truncate">
-                <Building2 className="w-3.5 h-3.5 text-pink-400 shrink-0" />
+                <Building2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <span className="truncate">{scheme.department}</span>
               </div>
-              <h3 className="font-extrabold text-base sm:text-lg text-slate-100 group-hover:text-pink-300 transition-colors line-clamp-2 mt-0.5 leading-snug">
+              <h3 className="font-bold text-base sm:text-lg text-slate-100 group-hover:text-amber-300 transition-colors line-clamp-2 mt-0.5 leading-snug">
                 {scheme.name}
               </h3>
             </div>
@@ -39,9 +39,9 @@ export const SchemeCard = ({ scheme }) => {
           <button
             onClick={() => toggleSaveScheme(scheme.scheme_id)}
             title={isSaved ? "Remove from bookmarks" : "Save scheme"}
-            className={`p-2.5 rounded-2xl border transition-all shrink-0 ${
+            className={`p-2 sm:p-2.5 rounded-xl border transition-all shrink-0 ${
               isSaved
-                ? 'insta-gradient-bg text-white border-pink-400 shadow-lg shadow-pink-500/25'
+                ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-md'
                 : 'bg-slate-800/80 text-slate-400 border-slate-700 hover:text-white hover:bg-slate-700'
             }`}
           >
@@ -50,26 +50,26 @@ export const SchemeCard = ({ scheme }) => {
         </div>
 
         {/* Badges Row: Status + Match Score */}
-        <div className="flex flex-wrap items-center justify-between gap-2 my-3 pt-3 border-t border-slate-800/80">
+        <div className="flex flex-wrap items-center justify-between gap-2 my-3 pt-2.5 border-t border-slate-800/80">
           <StatusBadge status={scheme.status} formattedLastDate={scheme.formatted_last_date} />
           <MatchScoreBadge score={matchScore} isEligible={isEligible} />
         </div>
 
         {/* Short Description */}
-        <p className="text-xs text-slate-300 line-clamp-3 leading-relaxed mb-4">
+        <p className="text-xs text-slate-300 line-clamp-3 leading-relaxed mb-3.5">
           {scheme.description}
         </p>
 
         {/* Key Benefits Highlight */}
         {scheme.benefits && scheme.benefits.length > 0 && (
-          <div className="mb-3.5 p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800">
-            <h4 className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-pink-400 mb-1 flex items-center gap-1">
+          <div className="mb-3.5 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+            <h4 className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-amber-400 mb-1 flex items-center gap-1">
               <span>🎁 Key Benefits</span>
             </h4>
             <ul className="space-y-1">
               {scheme.benefits.slice(0, 2).map((benefit, idx) => (
                 <li key={idx} className="text-xs text-slate-300 flex items-start gap-1.5 leading-tight">
-                  <span className="text-pink-400 font-bold">•</span>
+                  <span className="text-amber-400 font-bold">•</span>
                   <span>{benefit}</span>
                 </li>
               ))}
@@ -79,15 +79,15 @@ export const SchemeCard = ({ scheme }) => {
 
         {/* Why this matches you */}
         {evalRes.matched_conditions && evalRes.matched_conditions.length > 0 && (
-          <div className="mb-3.5 p-3.5 rounded-2xl bg-purple-950/20 border border-purple-800/30">
-            <h4 className="text-[10px] sm:text-[11px] font-extrabold text-purple-300 mb-1 flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+          <div className="mb-3.5 p-3 rounded-xl bg-emerald-950/20 border border-emerald-800/30">
+            <h4 className="text-[10px] sm:text-[11px] font-bold text-emerald-400 mb-1 flex items-center gap-1">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
               <span>{t('whyMatches')}</span>
             </h4>
             <ul className="space-y-1">
               {evalRes.matched_conditions.slice(0, 3).map((cond, idx) => (
-                <li key={idx} className="text-xs text-purple-200/90 flex items-center gap-1.5 leading-tight">
-                  <span className="text-purple-400 font-bold text-[10px] shrink-0">✓</span>
+                <li key={idx} className="text-xs text-emerald-200/90 flex items-center gap-1.5 leading-tight">
+                  <span className="text-emerald-400 font-bold text-[10px] shrink-0">✓</span>
                   <span>{cond}</span>
                 </li>
               ))}
@@ -98,12 +98,12 @@ export const SchemeCard = ({ scheme }) => {
       </div>
 
       {/* Footer Actions */}
-      <div className="pt-3.5 border-t border-slate-800/80 flex flex-col gap-2.5">
+      <div className="pt-3.5 border-t border-slate-800/80 flex flex-col gap-2">
         
         {/* Source Verified Badge */}
         <div className="flex flex-wrap items-center justify-between text-[10px] sm:text-[11px] text-slate-400 gap-1 px-0.5">
-          <span className="flex items-center gap-1 text-pink-400 font-bold">
-            <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-pink-400" />
+          <span className="flex items-center gap-1 text-emerald-400 font-medium">
+            <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
             <span>Verified Official Portal</span>
           </span>
           <span className="text-slate-500">Verified: {scheme.verified_at || '12 Aug 2026'}</span>
@@ -114,7 +114,7 @@ export const SchemeCard = ({ scheme }) => {
             href={scheme.official_source_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-2.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center gap-1.5 border border-slate-700 transition-all text-center"
+            className="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-700 transition-all text-center"
           >
             <span>{t('viewOfficialSource')}</span>
             <ExternalLink className="w-3.5 h-3.5 text-slate-400 shrink-0" />
@@ -124,7 +124,7 @@ export const SchemeCard = ({ scheme }) => {
             href={scheme.official_apply_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-2.5 rounded-2xl insta-gradient-bg text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-pink-500/20 hover:opacity-90 transition-all text-center"
+            className="px-2.5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/10 transition-all text-center"
           >
             <span>Apply Now</span>
             <ArrowRight className="w-3.5 h-3.5 shrink-0" />
@@ -133,7 +133,7 @@ export const SchemeCard = ({ scheme }) => {
 
         <Link
           to={`/scheme/${scheme.scheme_id}`}
-          className="text-center text-xs font-bold text-pink-400 hover:text-pink-300 hover:underline pt-1"
+          className="text-center text-xs font-semibold text-amber-400 hover:text-amber-300 hover:underline pt-1"
         >
           View Guidelines & Documents →
         </Link>
