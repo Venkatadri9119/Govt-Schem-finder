@@ -3,11 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useProfile } from '../context/ProfileContext';
 import { LanguageSelector } from './LanguageSelector';
-import { ShieldCheck, Bookmark, LayoutDashboard, Search, FileText, Info, Home, Menu, X, Sun, Moon } from 'lucide-react';
+import { ShieldCheck, Bookmark, LayoutDashboard, Search, FileText, Info, Home, Menu, X } from 'lucide-react';
 
 export const Navbar = () => {
   const { t } = useLanguage();
-  const { savedSchemeIds, theme, toggleTheme } = useProfile();
+  const { savedSchemeIds } = useProfile();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -107,22 +107,8 @@ export const Navbar = () => {
           </Link>
         </nav>
 
-        {/* Right Controls: Theme Toggle + Language Selector + Mobile Hamburger */}
+        {/* Right Controls: Language Selector + Mobile Hamburger */}
         <div className="flex items-center gap-2 sm:gap-3">
-          
-          {/* Day / Night Theme Toggle Button */}
-          <button
-            onClick={toggleTheme}
-            title={theme === 'dark' ? 'Switch to Day Mode (Light)' : 'Switch to Night Mode (Dark)'}
-            className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-amber-400 border border-slate-700/80 transition-all flex items-center justify-center"
-          >
-            {theme === 'dark' ? (
-              <Sun className="w-4 h-4 text-amber-400" />
-            ) : (
-              <Moon className="w-4 h-4 text-purple-400" />
-            )}
-          </button>
-
           <LanguageSelector />
 
           {/* Mobile Hamburger Toggle Button */}
