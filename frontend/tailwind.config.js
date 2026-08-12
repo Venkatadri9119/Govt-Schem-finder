@@ -8,18 +8,19 @@ export default {
     extend: {
       colors: {
         gov: {
-          blue: "#0b3c5d",
-          navy: "#1d2731",
-          gold: "#d9b310",
-          sky: "#328cc1",
-          light: "#f8fafc",
-          emerald: "#059669",
-          amber: "#d97706",
-          rose: "#e11d48"
+          dark: "#0b1329",
+          slate: "#15203b",
+          emerald: "#10b981",
+          teal: "#14b8a6",
+          gold: "#f59e0b",
+          amber: "#fbbf24",
+          soft: "#f8fafc",
+          muted: "#94a3b8"
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif']
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['Outfit', 'sans-serif']
       }
     },
   },
