@@ -7,15 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        gov: {
-          dark: "#0b1329",
-          slate: "#15203b",
-          emerald: "#10b981",
-          teal: "#14b8a6",
-          gold: "#f59e0b",
-          amber: "#fbbf24",
-          soft: "#f8fafc",
-          muted: "#94a3b8"
+        insta: {
+          purple: "#833ab4",
+          magenta: "#c13584",
+          red: "#fd1d1d",
+          orange: "#f56040",
+          yellow: "#ffdc80",
+          blue: "#405de6",
+          royal: "#5851db",
+          dark: "#0b0c10",
+          cardDark: "#12141d",
+          light: "#fafafa"
         }
       },
       fontFamily: {
