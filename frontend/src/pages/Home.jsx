@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { useProfile } from '../context/ProfileContext';
 import { VoiceInput } from '../components/VoiceInput';
 import { api } from '../services/api';
-import { Search, Sparkles, ShieldCheck, ArrowRight, BookOpen, GraduationCap, Sprout, Briefcase, HeartPulse, UserCheck } from 'lucide-react';
+import { Plus, Sparkles, ShieldCheck, ArrowRight, GraduationCap, Sprout, Briefcase, HeartPulse, UserCheck } from 'lucide-react';
 
 export const Home = () => {
   const { t } = useLanguage();
@@ -65,35 +65,39 @@ export const Home = () => {
             {t('heroSubtitle')}
           </p>
 
-          {/* Search Box with Natural Language & Voice Input */}
-          <form onSubmit={handleNLSubmit} className="mt-8">
-            <div className="glass-card p-2 rounded-2xl border border-slate-700/80 shadow-2xl flex flex-col sm:flex-row items-center gap-2">
+          {/* ChatGPT Style Rounded Pill Input Bar */}
+          <form onSubmit={handleNLSubmit} className="mt-8 max-w-2xl mx-auto">
+            <div className="bg-slate-900/90 border border-slate-700/90 hover:border-slate-600 rounded-full p-2 pl-4 shadow-2xl flex items-center gap-2 transition-all">
               
-              <div className="flex-1 flex items-center gap-3 px-3 w-full">
-                <Sparkles className="w-5 h-5 text-amber-400 shrink-0" />
-                <input
-                  type="text"
-                  value={nlQuery}
-                  onChange={(e) => setNlQuery(e.target.value)}
-                  placeholder={t('searchPlaceholder')}
-                  className="w-full bg-transparent border-0 text-slate-100 placeholder-slate-500 focus:outline-none text-xs sm:text-sm py-2"
-                />
+              {/* Left '+' Icon */}
+              <div className="text-slate-400 hover:text-white transition-colors cursor-pointer p-1">
+                <Plus className="w-5 h-5" />
               </div>
 
-              <div className="flex items-center gap-2 w-full sm:w-auto justify-end px-1 pb-1 sm:pb-0">
+              {/* Input Text */}
+              <input
+                type="text"
+                value={nlQuery}
+                onChange={(e) => setNlQuery(e.target.value)}
+                placeholder="Ask Scheme Finder or speak details..."
+                className="w-full bg-transparent border-0 text-slate-100 placeholder-slate-500 focus:outline-none text-xs sm:text-sm py-2 px-1"
+              />
+
+              {/* Right ChatGPT Style Voice & Search Action Icons */}
+              <div className="flex items-center gap-2 shrink-0 pr-1">
                 <VoiceInput onTranscript={(text) => setNlQuery(text)} disabled={isSearching} />
 
                 <button
                   type="submit"
                   disabled={isSearching}
-                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition-all shrink-0 w-full sm:w-auto"
+                  className="px-4 py-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-md shadow-amber-500/20 transition-all shrink-0"
                 >
                   {isSearching ? (
-                    <span>Parsing AI...</span>
+                    <span>Parsing...</span>
                   ) : (
                     <>
-                      <span>{t('findSchemesBtn')}</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <span>Find</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </>
                   )}
                 </button>
