@@ -21,18 +21,38 @@ export const ProfileProvider = ({ children }) => {
   const [savedSchemeIds, setSavedSchemeIds] = useState([]);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [theme, setTheme] = useState('dark'); // 'dark' or 'light'
 
-  // Sync saved schemes from localStorage on startup
+  // Sync saved schemes and theme preference from localStorage
   useEffect(() => {
     try {
       const stored = localStorage.getItem('saved_scheme_ids');
       if (stored) {
         setSavedSchemeIds(JSON.parse(stored));
       }
+      const storedTheme = localStorage.getItem('app_theme');
+      if (storedTheme) {
+        setTheme(storedTheme);
+      }
     } catch (e) {
       console.error(e);
     }
   }, []);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('app_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   const toggleSaveScheme = (schemeId) => {
     setSavedSchemeIds((prev) => {
@@ -56,7 +76,9 @@ export const ProfileProvider = ({ children }) => {
       savedSchemeIds,
       toggleSaveScheme,
       loading,
-      setLoading
+      setLoading,
+      theme,
+      toggleTheme
     }}>
       {children}
     </ProfileContext.Provider>

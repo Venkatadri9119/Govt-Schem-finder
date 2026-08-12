@@ -3,18 +3,18 @@ import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useProfile } from '../context/ProfileContext';
 import { LanguageSelector } from './LanguageSelector';
-import { ShieldCheck, Bookmark, LayoutDashboard, Search, FileText, Info, Home, Menu, X } from 'lucide-react';
+import { ShieldCheck, Bookmark, LayoutDashboard, Search, FileText, Info, Home, Menu, X, Sun, Moon } from 'lucide-react';
 
 export const Navbar = () => {
   const { t } = useLanguage();
-  const { savedSchemeIds } = useProfile();
+  const { savedSchemeIds, theme, toggleTheme } = useProfile();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isActive = (path) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 glass-panel border-b border-slate-800/80 shadow-xl">
+    <header className="sticky top-0 z-50 glass-panel border-b border-slate-800/80 shadow-xl transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         
         {/* Brand / Logo */}
@@ -26,7 +26,7 @@ export const Navbar = () => {
           </div>
           <div>
             <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="font-extrabold text-sm sm:text-lg tracking-tight bg-gradient-to-r from-emerald-200 via-teal-300 to-amber-300 bg-clip-text text-transparent">
+              <span className="font-extrabold text-sm sm:text-lg tracking-tight bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 bg-clip-text text-transparent">
                 AI Scheme Finder
               </span>
               <span className="hidden xs:inline-block px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
@@ -107,8 +107,22 @@ export const Navbar = () => {
           </Link>
         </nav>
 
-        {/* Right Section: Language Selector + Mobile Hamburger */}
+        {/* Right Controls: Theme Toggle + Language Selector + Mobile Hamburger */}
         <div className="flex items-center gap-2 sm:gap-3">
+          
+          {/* Day / Night Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            title={theme === 'dark' ? 'Switch to Day Mode (Light)' : 'Switch to Night Mode (Dark)'}
+            className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-amber-400 border border-slate-700/80 transition-all flex items-center justify-center"
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-amber-400 animate-spin-slow" />
+            ) : (
+              <Moon className="w-4 h-4 text-indigo-400" />
+            )}
+          </button>
+
           <LanguageSelector />
 
           {/* Mobile Hamburger Toggle Button */}
@@ -125,7 +139,7 @@ export const Navbar = () => {
 
       {/* Mobile Drawer Navigation Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur-xl px-4 py-4 space-y-2 animate-fadeIn shadow-2xl">
+        <div className="lg:hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur-xl px-4 py-4 space-y-2 shadow-2xl">
           <Link
             to="/"
             onClick={() => setMobileMenuOpen(false)}
